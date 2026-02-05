@@ -3,11 +3,12 @@
 import { useState, useEffect, useCallback } from "react";
 import HeroSlide from "./slides/HeroSlide";
 import FeaturesSlide from "./slides/FeaturesSlide";
+import DemoSlide from "./slides/DemoSlide";
 import BookingSlide from "./slides/BookingSlide";
 import TimelineSlide from "./slides/TimelineSlide";
 import GuaranteeSlide from "./slides/GuaranteeSlide";
 
-const TOTAL_SLIDES = 5;
+const TOTAL_SLIDES = 6;
 
 export default function Presentation() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -114,7 +115,7 @@ export default function Presentation() {
             key={index}
             onClick={() => goToSlide(index)}
             className={`nav-dot ${currentSlide === index ? "active" : ""}`}
-            aria-label={`Слайд ${index + 1}`}
+            aria-label={`Slayd ${index + 1}`}
           />
         ))}
       </nav>
@@ -125,9 +126,10 @@ export default function Presentation() {
       >
         <HeroSlide isActive={currentSlide === 0} />
         <FeaturesSlide isActive={currentSlide === 1} />
-        <BookingSlide isActive={currentSlide === 2} />
-        <TimelineSlide isActive={currentSlide === 3} />
-        <GuaranteeSlide isActive={currentSlide === 4} />
+        <DemoSlide isActive={currentSlide === 2} />
+        <BookingSlide isActive={currentSlide === 3} />
+        <TimelineSlide isActive={currentSlide === 4} />
+        <GuaranteeSlide isActive={currentSlide === 5} />
       </div>
 
       <button

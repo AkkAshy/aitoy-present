@@ -54,7 +54,7 @@ export default function TimelineSlide({ isActive }: SlideProps) {
           }`}
         >
           <span className="inline-block px-4 py-1 rounded-full bg-primary/20 text-primary-light text-sm mb-3">
-            03 / LOYIHA MUDDATI
+            05 / LOYIHA MUDDATI
           </span>
           <h2 className="text-3xl md:text-4xl font-bold">
             <span className="gradient-text">Ishlab chiqish bosqichlari</span>

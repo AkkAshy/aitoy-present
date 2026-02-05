@@ -50,7 +50,7 @@ export default function GuaranteeSlide({ isActive }: SlideProps) {
           }`}
         >
           <span className="inline-block px-4 py-1 rounded-full bg-accent/20 text-accent text-sm mb-4">
-            04 / KAFOLATLAR
+            06 / KAFOLATLAR
           </span>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             <span className="gradient-text">Kafolatlar va izohlar</span>

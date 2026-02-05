@@ -39,7 +39,7 @@ export default function BookingSlide({ isActive }: SlideProps) {
           }`}
         >
           <span className="inline-block px-4 py-1 rounded-full bg-primary/20 text-primary-light text-sm mb-4">
-            02 / QO&apos;SHIMCHA MODUL
+            04 / QO&apos;SHIMCHA MODUL
           </span>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             <span className="gradient-text">Bron Tizimi</span>
