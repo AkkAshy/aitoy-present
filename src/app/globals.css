@@ -1,26 +1,277 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0a1a;
+  --foreground: #f0f0ff;
+  --primary: #6366f1;
+  --primary-light: #818cf8;
+  --accent: #22d3ee;
+  --accent-glow: rgba(34, 211, 238, 0.3);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-light: var(--primary-light);
+  --color-accent: var(--accent);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Slide container - horizontal scroll */
+.slides-container {
+  display: flex;
+  width: fit-content;
+  height: 100vh;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Single slide */
+.slide {
+  width: 100vw;
+  height: 100vh;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Gradient backgrounds for different slides */
+.slide-hero {
+  background: radial-gradient(ellipse at 30% 20%, rgba(99, 102, 241, 0.3) 0%, transparent 50%),
+              radial-gradient(ellipse at 70% 80%, rgba(34, 211, 238, 0.2) 0%, transparent 50%),
+              var(--background);
+}
+
+.slide-features {
+  background: radial-gradient(ellipse at 80% 30%, rgba(34, 211, 238, 0.2) 0%, transparent 50%),
+              radial-gradient(ellipse at 20% 70%, rgba(99, 102, 241, 0.2) 0%, transparent 50%),
+              var(--background);
+}
+
+.slide-booking {
+  background: radial-gradient(ellipse at 50% 50%, rgba(34, 211, 238, 0.15) 0%, transparent 60%),
+              var(--background);
+}
+
+.slide-pricing {
+  background: radial-gradient(ellipse at 30% 80%, rgba(99, 102, 241, 0.25) 0%, transparent 50%),
+              var(--background);
+}
+
+.slide-timeline {
+  background: radial-gradient(ellipse at 70% 20%, rgba(34, 211, 238, 0.2) 0%, transparent 50%),
+              var(--background);
+}
+
+.slide-guarantee {
+  background: radial-gradient(ellipse at 50% 50%, rgba(99, 102, 241, 0.2) 0%, transparent 40%),
+              radial-gradient(ellipse at 80% 80%, rgba(34, 211, 238, 0.15) 0%, transparent 50%),
+              var(--background);
+}
+
+/* Glass effect cards */
+.glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  padding: 1.5rem;
+}
+
+/* Glow effects */
+.glow-text {
+  text-shadow: 0 0 20px var(--accent-glow), 0 0 40px var(--accent-glow);
+}
+
+.glow-border {
+  box-shadow: 0 0 20px var(--accent-glow), inset 0 0 20px rgba(34, 211, 238, 0.1);
+}
+
+/* Animated gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--primary-light), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Navigation dots */
+.nav-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.nav-dot.active {
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent-glow);
+  transform: scale(1.2);
+}
+
+.nav-dot:hover:not(.active) {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Fade in animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Stagger animations */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+
+/* Table styles */
+.price-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.price-table th,
+.price-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.price-table th {
+  background: rgba(99, 102, 241, 0.2);
+  font-weight: 600;
+}
+
+.price-table tr:hover td {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Keyboard hint */
+.keyboard-hint {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.875rem;
+}
+
+.key-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+}
+
+/* Progress bar */
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  transition: width 0.3s ease;
+  z-index: 100;
+}
+
+/* Icon styles */
+.icon-circle {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Timeline styles */
+.timeline-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  position: relative;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: 1.5rem;
+  top: 3.5rem;
+  bottom: -1.5rem;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+}
+
+.timeline-item:last-child::before {
+  display: none;
+}
+
+.timeline-dot {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  flex-shrink: 0;
+  border: 2px solid var(--accent);
 }
