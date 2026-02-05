@@ -2,7 +2,6 @@ import {
   ShieldIcon,
   WrenchIcon,
   BookIcon,
-  ClipboardIcon,
   LinkIcon,
   CameraIcon,
 } from "../ui/Icons";
@@ -31,10 +30,6 @@ const guarantees = [
 
 const notes = [
   {
-    Icon: ClipboardIcon,
-    text: "TZ aniq bo'lmasa, narxlar o'zgarishi mumkin",
-  },
-  {
     Icon: LinkIcon,
     text: "Soliq integratsiyasi, qo'shimcha funksiyalar alohida kelishiladi",
   },
@@ -55,7 +50,7 @@ export default function GuaranteeSlide({ isActive }: SlideProps) {
           }`}
         >
           <span className="inline-block px-4 py-1 rounded-full bg-accent/20 text-accent text-sm mb-4">
-            05 / KAFOLATLAR
+            04 / KAFOLATLAR
           </span>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             <span className="gradient-text">Kafolatlar va izohlar</span>
@@ -91,20 +86,6 @@ export default function GuaranteeSlide({ isActive }: SlideProps) {
                   </div>
                 </div>
               ))}
-            </div>
-
-            {/* Условие оплаты */}
-            <div
-              className={`mt-6 glass-card border-l-4 border-primary ${
-                isActive ? "fade-in-up stagger-5" : "opacity-0"
-              }`}
-            >
-              <p className="text-white/70">
-                <span className="text-primary-light font-semibold">
-                  To&apos;lov tartibi:
-                </span>{" "}
-                100% shartnoma imzolanganda amalga oshiriladi.
-              </p>
             </div>
           </div>
 
