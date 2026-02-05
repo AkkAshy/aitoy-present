@@ -9,10 +9,11 @@ async function generatePDF() {
 
   const page = await browser.newPage();
 
-  // Устанавливаем размер viewport как у презентации
+  // Устанавливаем размер viewport 1080p, но с высоким DPI для чёткости
   await page.setViewport({
     width: 1920,
     height: 1080,
+    deviceScaleFactor: 2,
   });
 
   console.log('Открываю сайт...');
@@ -35,15 +36,9 @@ async function generatePDF() {
     // Ждём анимацию
     await new Promise(resolve => setTimeout(resolve, 800));
 
-    // Скриншот текущего слайда
+    // Скриншот текущего слайда (1920x1080 * 2 = 3840x2160 реальных пикселей)
     const screenshot = await page.screenshot({
       type: 'png',
-      clip: {
-        x: 0,
-        y: 0,
-        width: 1920,
-        height: 1080,
-      },
     });
 
     slides.push(screenshot);
@@ -86,7 +81,7 @@ async function generatePDF() {
             background: #0a0a1a;
           }
           .slide-page:last-child { page-break-after: auto; }
-          @page { size: 1920px 1080px; margin: 0; }
+          @page { size: 3840px 2160px; margin: 0; }
         </style>
       </head>
       <body>${imagesHtml}</body>
@@ -95,8 +90,8 @@ async function generatePDF() {
 
   await pdfPage.pdf({
     path: path.join(__dirname, '..', 'TOY_AI_Presentation.pdf'),
-    width: '1920px',
-    height: '1080px',
+    width: '3840px',
+    height: '2160px',
     printBackground: true,
     preferCSSPageSize: true,
   });
